@@ -1,5 +1,27 @@
-[build-system]
+# Example .toml - https://stackoverflow.com/questions/62408719/download-dependencies-declared-in-pyproject-toml-using-pip
+
 # These are the assumed default build requirements from pip:
 # https://pip.pypa.io/en/stable/reference/pip/#pep-517-and-518-support
-requires = ["setuptools>=43.0.0", "wheel"]
+[build-system]
+requires = ["setuptools>=62.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "MAIPle"
+authors = [
+    {name = "Benjamin Churchill"},
+]
+readme = "README.md"
+requires-python = ">=3.10"
+dynamic = ["version", "description"]
+
+dependencies = [
+    "melee==0.35.0",
+    "reactivex==4.0.0",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest==6.2.5",
+    "pytest-cov==3.0.0",
+]
