@@ -1,8 +1,10 @@
-from typing import Tuple, Callable
-from melee.controller import Controller
+from typing import List, Callable
+from abc import ABC, abstractmethod
+
+from melee import Controller, GameState
 
 
-Action: Callable[[Controller], None]
+Action = Callable[[Controller], None]
 
 
 def no_op(controller: Controller) -> None:
@@ -26,4 +28,10 @@ class ActionQueue:
         self._queue.clear()
 
 
+class Actuator(ABC):
+    @abstractmethod
+    def to_action(self, state: GameState) -> List[Action]:
+        pass
 
+    def _no_ops(self, count: int) -> List[Action]:
+        return [no_op] * count

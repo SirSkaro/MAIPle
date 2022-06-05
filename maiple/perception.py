@@ -1,6 +1,6 @@
 from reactivex import Subject
-from melee.console import Console
-from melee.enums import Menu
+from melee import Console
+from melee import Menu
 
 
 class VsMatch:
