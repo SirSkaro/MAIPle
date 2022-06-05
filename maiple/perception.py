@@ -1,27 +1,26 @@
 from reactivex import Subject
 from melee import Console
-from melee import Menu
 
 
-class VsMatch:
+class Game:
     _console: Console
-    _game: Subject
+    _subject: Subject
 
     def __init__(self, console: Console):
-        self._game = Subject()
+        self._subject = Subject()
         self._console = console
+        self._should_quit = False
 
     def observe(self) -> Subject:
-        return self._game
+        return self._subject
 
-    def play(self) -> None:
+    def start(self) -> None:
         while True:
+            if self._should_quit:
+                self._subject.on_completed()
+                break
+
             game_state = self._console.step()
             if game_state is None:
                 continue
-            elif game_state.menu_state is Menu.IN_GAME:
-                self._game.on_next(game_state)
-            else:
-                self._game.on_completed()
-                return
-
+            self._subject.on_next(game_state)
