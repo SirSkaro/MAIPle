@@ -19,7 +19,7 @@ dependencies = [
     "melee==0.35.0",
     "reactivex==4.0.0",
     "dependency-injector==4.39.1",
-    "pyClarion @ git+https://github.com/cmekik/pyClarion.git@v0.17.1#egg=pyClarion",
+    "pyClarion @ git+https://github.com/cmekik/pyClarion.git@v0.18.0#egg=pyClarion",
 ]
 
 [project.optional-dependencies]
